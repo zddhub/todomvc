@@ -31,7 +31,13 @@ input[type="text"] {
   box-sizing: border-box;
   border: none;
   font-size: 24px;
-  font-weight: 200;
+  font-weight: 300;
+}
+
+input[type="checkbox"] {
+  outline-style: none;
+  font-size: 24px;
+  -webkit-appearance: none;
 }
 
 .new-todo {
@@ -64,8 +70,13 @@ input[type="text"] {
 
 .toggle-all {
   position: absolute;
-  left: 0;
-  top: 0;
+  transform: rotate(90deg);
+  left: 12px;
+  top: 16px;
+}
+
+.toggle-all:after {
+  content: '❯';
 }
 
 .todo-list {
@@ -88,13 +99,21 @@ input[type="text"] {
   text-align: left;
   display: block;
   font-size: 24px;
+  font-weight: 200;
   padding: 15px 65px 15px 55px;
 }
 
 .destory {
   position: absolute;
-  right: 0;
-  bottom: 0;
+  right: 10px;
+  bottom: 10px;
+  font-size: 24px;
+  background: white;
+  border: 0;
+}
+
+.destory:after {
+  content: '×';
 }
 
 .edit {
@@ -107,6 +126,17 @@ input[type="text"] {
   position: absolute;
   left: 0;
   top: 0;
+  bottom: 0;
+  height: 40px;
+  margin: auto;
+}
+
+.toggle:after {
+  content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="-10 -18 100 135"><circle cx="50" cy="50" r="50" fill="none" stroke="#ededed" stroke-width="3"/></svg>');
+}
+
+.toggle:checked:after {
+  content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="-10 -18 100 135"><circle cx="50" cy="50" r="50" fill="none" stroke="#bddad5" stroke-width="3"/><path fill="#5dc2af" d="M72 25L42 71 27 56l-4 4 20 20 34-52z"/></svg>');
 }
 
 .todo-count {
@@ -128,6 +158,11 @@ input[type="text"] {
 
 .filters li {
   display: inline;
+}
+
+.filters a {
+  padding: 10px;
+  text-decoration: none;
 }
 
 .info {
