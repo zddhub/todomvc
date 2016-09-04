@@ -2,6 +2,7 @@ html, body {
   margin: 0;
   padding: 0;
 }
+
 body {
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-size: 10px;
@@ -26,6 +27,27 @@ body {
   height: 65px;
   width: 100%;
   font-size: 24px;
+  padding: 0 15px 0 65px;
+  outline-style: none;
+  box-sizing: border-box;
+  font-weight: 200;
+}
+
+::-webkit-input-placeholder {
+  font-family: 'Helvetica Neue', Hevetica, Arial, sans-self;
+  font-style: italic;
+}
+:-moz-placeholder {
+  font-family: 'Helvetica Neue', Hevetica, Arial, sans-self;
+  font-style: italic;
+}
+::-moz-placeholder {
+  font-family: 'Helvetica Neue', Hevetica, Arial, sans-self;
+  font-style: italic;
+}
+:-ms-input-placeholder {
+  font-family: 'Helvetica Neue', Hevetica, Arial, sans-self;
+  font-style: italic;
 }
 
 .info {
