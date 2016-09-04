@@ -21,19 +21,24 @@ body {
 }
 
 .main {
+  position: relative;
   background: #ffffff;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 25px 50px 0 rgba(0, 0, 0, 0.1);
+}
+
+input[type="text"] {
+  outline-style: none;
+  box-sizing: border-box;
+  border: none;
+  font-size: 24px;
+  font-weight: 200;
 }
 
 .new-todo {
   height: 65px;
   width: 100%;
-  font-size: 24px;
-  padding: 0 15px 0 65px;
-  outline-style: none;
-  box-sizing: border-box;
-  font-weight: 200;
-  border: none;
+  padding: 0 15px 0 55px;
+  box-shadow: inset 0 -1px 1px rgba(0, 0, 0, 0.2);
 }
 
 ::-webkit-input-placeholder {
@@ -55,6 +60,74 @@ body {
   font-family: 'Helvetica Neue', Hevetica, Arial, sans-self;
   font-style: italic;
   color: #d6d6d6;
+}
+
+.toggle-all {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.todo-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.todo-list li {
+  position: relative;
+  border-bottom: 1px solid #d5d5d5;
+}
+
+.view {
+  min-height: 58px;
+  position: relative;
+}
+
+.todo {
+  text-align: left;
+  display: block;
+  font-size: 24px;
+  padding: 15px 65px 15px 55px;
+}
+
+.destory {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+
+.edit {
+  width: 100%;
+  height: 58px;
+  padding: 0 15px 0 55px;
+}
+
+.toggle {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.todo-count {
+  float: left;
+}
+
+.footer {
+  font-size: 14px;
+  padding: 15px;
+  height: 50px;
+  box-sizing: border-box;
+}
+
+.filters {
+  position: relative;
+  list-style: none;
+  margin: 0;
+}
+
+.filters li {
+  display: inline;
 }
 
 .info {
