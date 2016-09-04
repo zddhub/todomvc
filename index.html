@@ -11,6 +11,25 @@
     </header>
     <section class="main">
       <input type="text" class="new-todo" placeholder="What needs to be done?">
+      <input type="checkbox" class="toggle-all">
+      <ul class="todo-list">
+        <li>
+          <div class="view">
+            <input type="checkbox" class="toggle">
+            <label for="todo"></label>
+            <button class="destory"></button>
+          </div>
+          <input type="text" class="edit">
+        </li>
+      </ul>
+      <footer class="footer">
+        <span class="todo-count">1 item left</span>
+        <ul class="filters">
+          <li><a href="">All</a></li>
+          <li><a href="">Active</a></li>
+          <li><a href="">Completed</a></li>
+        </ul>
+      </footer>
     </section>
     <footer class="info">
       <p>Double-click to edit a todo</p>
