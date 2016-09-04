@@ -73,6 +73,7 @@ input[type="checkbox"] {
   transform: rotate(90deg);
   left: 12px;
   top: 16px;
+  color: rgba(0, 0, 0, 0.2);
 }
 
 .toggle-all:after {
@@ -148,6 +149,21 @@ input[type="checkbox"] {
   padding: 15px;
   height: 50px;
   box-sizing: border-box;
+  color: rgb(119, 119, 119);
+}
+
+.footer:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 50px;
+  width: 100%;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2),
+	            0 8px 0 -3px #f6f6f6,
+	            0 9px 1px -3px rgba(0, 0, 0, 0.2),
+	            0 16px 0 -6px #f6f6f6,
+	            0 17px 2px -6px rgba(0, 0, 0, 0.2);
 }
 
 .filters {
@@ -163,6 +179,7 @@ input[type="checkbox"] {
 .filters a {
   padding: 10px;
   text-decoration: none;
+  color: inherit;
 }
 
 .info {
