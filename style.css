@@ -104,13 +104,24 @@ input[type="checkbox"] {
   padding: 15px 65px 15px 55px;
 }
 
+.todo-list li:hover .destory{
+  display: block;
+}
+
 .destory {
+  display: none;
   position: absolute;
   right: 10px;
   bottom: 10px;
-  font-size: 24px;
+  font-size: 30px;
+  font-weight: 200;
   background: white;
   border: 0;
+  color: #cc9a9a;
+}
+
+.destory:hover {
+  color: #af5b5e;
 }
 
 .destory:after {
@@ -177,9 +188,16 @@ input[type="checkbox"] {
 }
 
 .filters a {
-  padding: 10px;
+  margin: 5px;
+  padding: 5px;
   text-decoration: none;
   color: inherit;
+  border: 1px solid transparent;
+  border-radius: 3px;
+}
+
+.filters a:hover {
+  border-color: rgba(175, 47, 47, 0.2);
 }
 
 .info {
