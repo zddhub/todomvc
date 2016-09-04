@@ -17,10 +17,12 @@ body {
   font-size: 100px;
   font-weight: 100;
   margin: 0;
+  color: rgba(175, 47, 47, 0.15);
 }
 
 .main {
   background: #ffffff;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 25px 50px 0 rgba(0, 0, 0, 0.1);
 }
 
 .new-todo {
@@ -31,25 +33,31 @@ body {
   outline-style: none;
   box-sizing: border-box;
   font-weight: 200;
+  border: none;
 }
 
 ::-webkit-input-placeholder {
   font-family: 'Helvetica Neue', Hevetica, Arial, sans-self;
   font-style: italic;
+  color: #d6d6d6;
 }
 :-moz-placeholder {
   font-family: 'Helvetica Neue', Hevetica, Arial, sans-self;
   font-style: italic;
+  color: #d6d6d6;
 }
 ::-moz-placeholder {
   font-family: 'Helvetica Neue', Hevetica, Arial, sans-self;
   font-style: italic;
+  color: #d6d6d6;
 }
 :-ms-input-placeholder {
   font-family: 'Helvetica Neue', Hevetica, Arial, sans-self;
   font-style: italic;
+  color: #d6d6d6;
 }
 
 .info {
   margin-top: 50px;
+  color: rgb(191, 191, 191);
 }
