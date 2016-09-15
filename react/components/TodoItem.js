@@ -4,11 +4,13 @@ class TodoItem extends Component{
   render() {
     const todo = this.props.todo
     return (
-      <div>
-        <input type='checkbox'/>
-        <label>{todo.title}</label>
-        <input type='button'/>
-      </div>
+      <li>
+        <div className='view'>
+          <label className='todo'>{todo.title}</label>
+          <button className='destory'/>
+          <input type='checkbox' className='toggle'/>
+        </div>
+      </li>
     )
   }
 }

@@ -3,7 +3,7 @@ var app = express()
 
 var port = 3000
 
-app.use(express.static('dist'))
+app.use(express.static('./'))
 
 app.get('/', (req, res) => {
   res.sendFile(__dirname + '/index.html')

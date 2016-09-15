@@ -18,11 +18,13 @@ class MainSection extends Component {
 
   render() {
     return (
-      <div>
+      <section className='main'>
         <ToggleAll />
-        {this.todoList()}
+        <ul className='todo-list'>
+          {this.todoList()}
+        </ul>
         <FilterTodo activeCount={this.activeNumber()} />
-      </div>
+      </section>
     )
   }
 }

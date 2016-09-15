@@ -6,11 +6,11 @@ import Footer from './Footer'
 class TodoApp extends Component {
   render() {
     return (
-      <div>
-        <NewTodo className='new-todo'/>
-        <MainSection todos={this.props.todos} />
+      <section>
+        <NewTodo />
+        <MainSection className='main' todos={this.props.todos} />
         <Footer />
-      </div>
+      </section>
     )
   }
 }
