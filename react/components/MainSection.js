@@ -6,7 +6,9 @@ import FilterTodo from './FilterTodo'
 class MainSection extends Component {
   todoList = () => {
     return this.props.todos.map(todo => {
-      return <TodoItem key={todo.id} todo={todo} />
+      return <TodoItem key={todo.id} todo={todo}
+        completedTodo={this.props.completedTodo}
+        destory={this.props.destory}/>
     })
   }
 
@@ -16,14 +18,24 @@ class MainSection extends Component {
     }).length
   }
 
+  filterTodo = () => {
+    if (this.props.todos.length > 0)
+      return <FilterTodo activeCount={this.activeNumber()} />
+  }
+
+  toggleAll = () => {
+    if (this.props.todos.length > 0)
+      return <ToggleAll toggleAllChange={this.props.toggleAllChange}/>
+  }
+
   render() {
     return (
       <section className='main'>
-        <ToggleAll />
+        {this.toggleAll()}
         <ul className='todo-list'>
           {this.todoList()}
         </ul>
-        <FilterTodo activeCount={this.activeNumber()} />
+        {this.filterTodo()}
       </section>
     )
   }

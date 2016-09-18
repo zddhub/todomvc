@@ -71,9 +71,14 @@ input[type="checkbox"] {
 .toggle-all {
   position: absolute;
   transform: rotate(90deg);
-  left: 12px;
-  top: -48px;
+  left: -12px;
+  top: -58px;
+  padding: 10px 27px 10px 27px;
   color: rgba(0, 0, 0, 0.2);
+}
+
+.toggle-all:checked {
+  color: rgba(1, 0, 0, 0.5);
 }
 
 .toggle-all:after {
@@ -104,11 +109,17 @@ input[type="checkbox"] {
   padding: 15px 65px 15px 55px;
 }
 
+.completed {
+  text-decoration: line-through;
+  color: #d6d6d6;
+}
+
 .todo-list li:hover .destory{
   display: block;
 }
 
 .destory {
+  outline-style: none;
   display: none;
   position: absolute;
   right: 10px;
