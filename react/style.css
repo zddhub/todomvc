@@ -212,6 +212,10 @@ input[type="checkbox"] {
   border-color: rgba(175, 47, 47, 0.2);
 }
 
+.filters .checked-filter {
+  border-color: rgba(175, 47, 47, 0.2);
+}
+
 .info {
   margin-top: 50px;
   color: rgb(191, 191, 191);

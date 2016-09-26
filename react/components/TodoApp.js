@@ -10,7 +10,9 @@ class TodoApp extends Component {
     super()
     this.state = {
       todos: [],
-      newTodo: ''
+      newTodo: '',
+      filter: 'All',
+      showTodos: []
     }
   }
 
@@ -27,7 +29,7 @@ class TodoApp extends Component {
 
     const newTodo = {id: this.state.todos.length +1, title: event.target.value, completed: false, date: new Date()}
     this.state.todos.push(newTodo)
-    this.setState({todos: this.state.todos, newTodo: ''})
+    this.setState({todos: this.state.todos, newTodo: '', showTodos: this.getShowTodos(this.state.todos, this.state.filter)})
   }
 
   handleNewTodoChange = (event) => {
@@ -39,22 +41,44 @@ class TodoApp extends Component {
       todo.completed = event.target.checked
       return todo
     })
-    this.setState({todos})
+    this.setState({todos, showTodos: this.getShowTodos(todos, this.state.filter)})
   }
 
   destory = (id) => {
     const todos = this.state.todos.filter(todo => { return todo.id !== id })
-    this.setState({todos})
+    this.setState({todos, showTodos: this.getShowTodos(todos, this.state.filter)})
+  }
+
+  getShowTodos = (todos, filter) => {
+    const showTodos = todos.filter(todo => {
+      switch (filter) {
+        case 'Active':
+          return !todo.completed
+        case 'Completed':
+          return todo.completed
+        default:
+          return true
+      }
+    })
+    return showTodos
+  }
+
+  filterChange = (event) => {
+    this.setState({filter: event.target.text, showTodos: this.getShowTodos(this.state.todos, event.target.text)})
   }
 
   render() {
     return (
       <section>
         <NewTodo newTodo={this.state.newTodo} addNewTodo={this.addNewTodo} handleNewTodoChange={this.handleNewTodoChange}/>
-        <MainSection className='main' todos={this.state.todos}
+        <MainSection className='main'
+          todos={this.state.todos}
           completedTodo={this.completedTodo}
           toggleAllChange={this.toggleAllChange}
-          destory={this.destory}/>
+          destory={this.destory}
+          showTodos={this.state.showTodos}
+          filter={this.state.filter}
+          filterChange={this.filterChange}/>
         <Footer />
       </section>
     )

@@ -5,7 +5,7 @@ import FilterTodo from './FilterTodo'
 
 class MainSection extends Component {
   todoList = () => {
-    return this.props.todos.map(todo => {
+    return this.props.showTodos.map(todo => {
       return <TodoItem key={todo.id} todo={todo}
         completedTodo={this.props.completedTodo}
         destory={this.props.destory}/>
@@ -20,7 +20,7 @@ class MainSection extends Component {
 
   filterTodo = () => {
     if (this.props.todos.length > 0)
-      return <FilterTodo activeCount={this.activeNumber()} />
+      return <FilterTodo activeCount={this.activeNumber()} filter={this.props.filter} filterChange={this.props.filterChange}/>
   }
 
   toggleAll = () => {
