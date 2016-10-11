@@ -32,10 +32,10 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
-  '/': {
-    view: 'homepage'
-  }
 
+  'PUT /todos': 'TodosController.updateAllTodoStates',
+  'DELETE /todos': 'TodosController.destroyAllTodos',
+  'GET /': 'TodosController.getAPIUrl'
   /***************************************************************************
   *                                                                          *
   * Custom routes here...                                                    *
