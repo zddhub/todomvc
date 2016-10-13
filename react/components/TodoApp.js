@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import NewTodo from './NewTodo'
 import MainSection from './MainSection'
 import Footer from './Footer'
+import TodoAPI from '../utils/TodoAPI'
 
 const ENTER_KEY = 13
 
@@ -16,20 +17,30 @@ class TodoApp extends Component {
     }
   }
 
-  completedTodo = (id) => {
-    const todos = this.state.todos.map(todo => {
-      if (todo.id === id) todo.completed = !todo.completed
-      return todo
+  componentDidMount = () => {
+    TodoAPI.getTodos((todos) => {
+      this.setState({todos, showTodos: this.getShowTodos(todos, this.state.filter)})
     })
-    this.setState({todos})
+  }
+
+  completedTodo = (id) => {
+    const oldTodo = this.state.todos.filter(todo => { return todo.id === id })
+    TodoAPI.changeTodoState(id, !oldTodo[0].completed, (changedTodo) => {
+      const todos = this.state.todos.map(todo => {
+        if (todo.id === changedTodo.id) todo.completed = changedTodo.completed
+        return todo
+      })
+      this.setState({todos})
+    })
   }
 
   addNewTodo = (event) => {
     if (event.keyCode !== ENTER_KEY) return
 
-    const newTodo = {id: this.state.todos.length +1, title: event.target.value, completed: false, date: new Date()}
-    this.state.todos.push(newTodo)
-    this.setState({todos: this.state.todos, newTodo: '', showTodos: this.getShowTodos(this.state.todos, this.state.filter)})
+    TodoAPI.addNewTodo({title: event.target.value, completed: false}, (newTodo) => {
+      this.state.todos.push(newTodo)
+      this.setState({todos: this.state.todos, newTodo: '', showTodos: this.getShowTodos(this.state.todos, this.state.filter)})
+    })
   }
 
   handleNewTodoChange = (event) => {
@@ -37,16 +48,15 @@ class TodoApp extends Component {
   }
 
   toggleAllChange = (event) => {
-    const todos = this.state.todos.map(todo => {
-      todo.completed = event.target.checked
-      return todo
+    TodoAPI.toggleAllChange(event.target.checked, (todos) => {
+      this.setState({todos, showTodos: this.getShowTodos(todos, this.state.filter)})
     })
-    this.setState({todos, showTodos: this.getShowTodos(todos, this.state.filter)})
   }
 
   destory = (id) => {
     const todos = this.state.todos.filter(todo => { return todo.id !== id })
     this.setState({todos, showTodos: this.getShowTodos(todos, this.state.filter)})
+    TodoAPI.destoryTodo(id)
   }
 
   getShowTodos = (todos, filter) => {
