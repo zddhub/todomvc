@@ -12,14 +12,13 @@ class TodoApp extends Component {
     this.state = {
       todos: [],
       newTodo: '',
-      filter: 'All',
-      showTodos: []
+      filter: 'All'
     }
   }
 
   componentDidMount = () => {
     TodoAPI.getTodos((todos) => {
-      this.setState({todos, showTodos: this.getShowTodos(todos, this.state.filter)})
+      this.setState({todos})
     })
   }
 
@@ -42,7 +41,7 @@ class TodoApp extends Component {
 
     TodoAPI.addNewTodo({title: event.target.value, completed: false}, (newTodo) => {
       this.state.todos.push(newTodo)
-      this.setState({todos: this.state.todos, newTodo: '', showTodos: this.getShowTodos(this.state.todos, this.state.filter)})
+      this.setState({todos: this.state.todos, newTodo: ''})
     })
   }
 
@@ -52,32 +51,18 @@ class TodoApp extends Component {
 
   toggleAllChange = (event) => {
     TodoAPI.toggleAllChange(event.target.checked, (todos) => {
-      this.setState({todos, showTodos: this.getShowTodos(todos, this.state.filter)})
+      this.setState({todos})
     })
   }
 
   destory = (id) => {
     const todos = this.state.todos.filter(todo => { return todo.id !== id })
-    this.setState({todos, showTodos: this.getShowTodos(todos, this.state.filter)})
+    this.setState({todos})
     TodoAPI.destoryTodo(id)
   }
 
-  getShowTodos = (todos, filter) => {
-    const showTodos = todos.filter(todo => {
-      switch (filter) {
-        case 'Active':
-          return !todo.completed
-        case 'Completed':
-          return todo.completed
-        default:
-          return true
-      }
-    })
-    return showTodos
-  }
-
   filterChange = (event) => {
-    this.setState({filter: event.target.text, showTodos: this.getShowTodos(this.state.todos, event.target.text)})
+    this.setState({filter: event.target.text})
   }
 
   render() {
@@ -89,7 +74,6 @@ class TodoApp extends Component {
           completedTodo={this.completedTodo}
           toggleAllChange={this.toggleAllChange}
           destory={this.destory}
-          showTodos={this.state.showTodos}
           filter={this.state.filter}
           filterChange={this.filterChange}/>
         <Footer />
