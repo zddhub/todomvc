@@ -37,6 +37,9 @@ class TodoApp extends Component {
   addNewTodo = (event) => {
     if (event.keyCode !== ENTER_KEY) return
 
+    if (event.target.value.trim() === "")
+      return
+
     TodoAPI.addNewTodo({title: event.target.value, completed: false}, (newTodo) => {
       this.state.todos.push(newTodo)
       this.setState({todos: this.state.todos, newTodo: '', showTodos: this.getShowTodos(this.state.todos, this.state.filter)})
