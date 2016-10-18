@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import NewTodo from './NewTodo'
-import MainSection from './MainSection'
-import Footer from './Footer'
+import NewTodo from '../components/NewTodo'
+import MainSection from '../components/MainSection'
+import Footer from '../components/Footer'
 import TodoAPI from '../utils/TodoAPI'
 
 const ENTER_KEY = 13

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { render } from 'react-dom'
-import TodoApp from './components/TodoApp'
+import TodoApp from './containers/TodoApp'
 
 render(
   <TodoApp />,
