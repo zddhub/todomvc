@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { addTodo, removeTodo, completeTodo, triggerAllTodos, filterTodos } from '../actions/actions'
 import NewTodo from '../components/NewTodo'
 import MainSection from '../components/MainSection'
 import Footer from '../components/Footer'
@@ -7,30 +9,12 @@ import TodoAPI from '../utils/TodoAPI'
 const ENTER_KEY = 13
 
 class TodoApp extends Component {
-  constructor() {
-    super()
-    this.state = {
-      todos: [],
-      newTodo: '',
-      filter: 'All'
-    }
-  }
 
   componentDidMount = () => {
-    TodoAPI.getTodos((todos) => {
-      this.setState({todos})
-    })
   }
 
   completedTodo = (id) => {
-    const oldTodo = this.state.todos.filter(todo => { return todo.id === id })
-    TodoAPI.changeTodoState(id, !oldTodo[0].completed, (changedTodo) => {
-      const todos = this.state.todos.map(todo => {
-        if (todo.id === changedTodo.id) todo.completed = changedTodo.completed
-        return todo
-      })
-      this.setState({todos})
-    })
+    this.props.dispatch(completedTodo(id))
   }
 
   addNewTodo = (event) => {
@@ -39,42 +23,31 @@ class TodoApp extends Component {
     if (event.target.value.trim() === "")
       return
 
-    TodoAPI.addNewTodo({title: event.target.value, completed: false}, (newTodo) => {
-      this.state.todos.push(newTodo)
-      this.setState({todos: this.state.todos, newTodo: ''})
-    })
-  }
-
-  handleNewTodoChange = (event) => {
-    this.setState({newTodo: event.target.value})
+    this.props.dispatch(addTodo(event.target.value))
   }
 
   toggleAllChange = (event) => {
-    TodoAPI.toggleAllChange(event.target.checked, (todos) => {
-      this.setState({todos})
-    })
+    this.props.dispatch(triggerAllTodos(event.target.checked))
   }
 
   destory = (id) => {
-    const todos = this.state.todos.filter(todo => { return todo.id !== id })
-    this.setState({todos})
-    TodoAPI.destoryTodo(id)
+    this.props.dispatch(removeTodo(id))
   }
 
   filterChange = (event) => {
-    this.setState({filter: event.target.text})
+    this.props.dispatch(filterTodos(event.target.text))
   }
 
   render() {
     return (
       <section>
-        <NewTodo newTodo={this.state.newTodo} addNewTodo={this.addNewTodo} handleNewTodoChange={this.handleNewTodoChange}/>
+        <NewTodo newTodo={this.props.newTodo} addNewTodo={this.addNewTodo}/>
         <MainSection className='main'
-          todos={this.state.todos}
+          todos={this.props.todos}
           completedTodo={this.completedTodo}
           toggleAllChange={this.toggleAllChange}
           destory={this.destory}
-          filter={this.state.filter}
+          filter={this.props.filter}
           filterChange={this.filterChange}/>
         <Footer />
       </section>
@@ -82,4 +55,12 @@ class TodoApp extends Component {
   }
 }
 
-export default TodoApp
+function select(state) {
+  return {
+    todos: state.todos,
+    newTodo: state.newTodo,
+    filter: state.filter
+  }
+}
+
+export default connect(select)(TodoApp)
