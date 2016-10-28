@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { addTodo, removeTodo, completeTodo, triggerAllTodos, filterTodos } from '../actions/actions'
+import { addTodo, removeTodo, completeTodo, triggerAllTodos, filterTodos, fetchTodos } from '../actions/actions'
 import NewTodo from '../components/NewTodo'
 import MainSection from '../components/MainSection'
 import Footer from '../components/Footer'
@@ -11,10 +11,11 @@ const ENTER_KEY = 13
 class TodoApp extends Component {
 
   componentDidMount = () => {
+    this.props.dispatch(fetchTodos())
   }
 
   completedTodo = (id) => {
-    this.props.dispatch(completedTodo(id))
+    this.props.dispatch(completeTodo(id))
   }
 
   addNewTodo = (event) => {
@@ -41,9 +42,9 @@ class TodoApp extends Component {
   render() {
     return (
       <section>
-        <NewTodo newTodo={this.props.newTodo} addNewTodo={this.addNewTodo}/>
+        <NewTodo addNewTodo={this.addNewTodo}/>
         <MainSection className='main'
-          todos={this.props.todos}
+          todos={this.props.todos.items}
           completedTodo={this.completedTodo}
           toggleAllChange={this.toggleAllChange}
           destory={this.destory}
@@ -58,7 +59,6 @@ class TodoApp extends Component {
 function select(state) {
   return {
     todos: state.todos,
-    newTodo: state.newTodo,
     filter: state.filter
   }
 }

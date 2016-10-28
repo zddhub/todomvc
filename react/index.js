@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import { render } from 'react-dom'
-import TodoApp from './containers/TodoApp'
-import { createStore } from 'redux'
+import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
-import { todos } from './reducers/reducers'
+import thunk from 'redux-thunk'
+import rootReducers from './reducers/reducers'
+import TodoApp from './containers/TodoApp'
 
-let store = createStore(todos)
+let store = createStore(rootReducers, applyMiddleware(thunk))
 
 render(
   <Provider store={store}>

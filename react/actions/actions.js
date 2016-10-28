@@ -1,14 +1,14 @@
-export const visibilityFiters = {
-  SHOW_ALL: 'SHOW_ALL',
-  SHOW_COMPLETED: 'SHOW_COMPLETED',
-  SHOW_ACTIVE: 'SHOW_ACTIVE'
-}
+import TodoAPI from '../utils/TodoAPI'
 
 export const ADD_TODO = 'ADD_TODO'
 export const REMOVE_TODO = 'REMOVE_TODO'
 export const COMPLETE_TOOD = 'COMPLETE_TOOD'
 export const TRIGGER_ALL_TODOS = 'TRIGGER_ALL_TODOS'
 export const FILTER_TODOS = 'FILTER_TODOS'
+
+export const FETCH_TODOS_REQUEST = 'FETCH_TODOS_REQUEST'
+export const FETCH_TODOS_SUCCESS = 'FETCH_TODOS_SUCCESS'
+// export const FETCH_TODOS_FAILURE = 'FETCH_TODOS_FAILURE'
 
 export function addTodo(title) {
   return {type: ADD_TODO, title}
@@ -28,4 +28,22 @@ export function triggerAllTodos(isCompleted) {
 
 export function filterTodos(filter) {
   return {type: FILTER_TODOS, filter}
+}
+
+
+export function requestTodos() {
+  return {type: FETCH_TODOS_REQUEST}
+}
+
+export function receivedTodos(todos) {
+  return {type: FETCH_TODOS_SUCCESS, todos}
+}
+
+export function fetchTodos() {
+  return function(dispatch) {
+    dispatch(requestTodos())
+    return TodoAPI.getTodos(todos => {
+      dispatch(receivedTodos(todos))
+    })
+  }
 }
