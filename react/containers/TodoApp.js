@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { addTodo, requestRemoveTodo, requestCompleteTodo, requestTriggerAllTodos, filterTodos, fetchTodos, requestAddTodo } from '../actions/actions'
+import { requestRemoveTodo, requestCompleteTodo, requestTriggerAllTodos, fetchTodos, requestAddTodo } from '../actions/async'
+import { filterTodos } from '../actions/sync'
 import NewTodo from '../components/NewTodo'
 import MainSection from '../components/MainSection'
 import Footer from '../components/Footer'
