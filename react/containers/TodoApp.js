@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { addTodo, removeTodo, completeTodo, triggerAllTodos, filterTodos, fetchTodos } from '../actions/actions'
+import { addTodo, requestRemoveTodo, requestCompleteTodo, requestTriggerAllTodos, filterTodos, fetchTodos, requestAddTodo } from '../actions/actions'
 import NewTodo from '../components/NewTodo'
 import MainSection from '../components/MainSection'
 import Footer from '../components/Footer'
@@ -13,20 +13,20 @@ class TodoApp extends Component {
   }
 
   completedTodo = (id) => {
-    this.props.dispatch(completeTodo(id))
+    this.props.dispatch(requestCompleteTodo(id))
   }
 
   addNewTodo = (title) => {
     if (title.trim() === "") return
-    this.props.dispatch(addTodo(title))
+    this.props.dispatch(requestAddTodo(title))
   }
 
   toggleAllChange = (event) => {
-    this.props.dispatch(triggerAllTodos(event.target.checked))
+    this.props.dispatch(requestTriggerAllTodos(event.target.checked))
   }
 
   destory = (id) => {
-    this.props.dispatch(removeTodo(id))
+    this.props.dispatch(requestRemoveTodo(id))
   }
 
   filterChange = (event) => {

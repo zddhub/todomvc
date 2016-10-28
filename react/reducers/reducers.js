@@ -29,10 +29,7 @@ function todos(state = initialTodos, action) {
         didInvalidate: true,
         items: [
           ...state.items,
-          {
-            title: action.title,
-            completed: false
-          }
+          action.todo
         ]
       })
     case REMOVE_TODO:
