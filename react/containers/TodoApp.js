@@ -6,8 +6,6 @@ import MainSection from '../components/MainSection'
 import Footer from '../components/Footer'
 import TodoAPI from '../utils/TodoAPI'
 
-const ENTER_KEY = 13
-
 class TodoApp extends Component {
 
   componentDidMount = () => {
@@ -18,13 +16,9 @@ class TodoApp extends Component {
     this.props.dispatch(completeTodo(id))
   }
 
-  addNewTodo = (event) => {
-    if (event.keyCode !== ENTER_KEY) return
-
-    if (event.target.value.trim() === "")
-      return
-
-    this.props.dispatch(addTodo(event.target.value))
+  addNewTodo = (title) => {
+    if (title.trim() === "") return
+    this.props.dispatch(addTodo(title))
   }
 
   toggleAllChange = (event) => {

@@ -2,9 +2,9 @@ import { combineReducers } from 'redux'
 import { FETCH_TODOS_REQUEST, FETCH_TODOS_SUCCESS, ADD_TODO, REMOVE_TODO, COMPLETE_TOOD, TRIGGER_ALL_TODOS, FILTER_TODOS } from '../actions/actions'
 
 const visibilityFiters = {
-  SHOW_ALL: 'SHOW_ALL',
-  SHOW_COMPLETED: 'SHOW_COMPLETED',
-  SHOW_ACTIVE: 'SHOW_ACTIVE'
+  SHOW_ALL: 'All',
+  SHOW_COMPLETED: 'Completed',
+  SHOW_ACTIVE: 'Active'
 }
 
 const initialTodos = {

@@ -1,12 +1,22 @@
 import React, { Component } from 'react'
 
+const ENTER_KEY = 13
+
 class NewTodo extends Component{
+
+  handleNewTodo = event => {
+    if (event.keyCode !== ENTER_KEY) return
+    this.props.addNewTodo(this.refs.newTodo.value)
+    this.refs.newTodo.value = ''
+  }
+
   render() {
     return (
       <header className='header'>
         <h1>todos</h1>
         <input className='new-todo' type='text' placeholder='What needs to be done?'
-          onKeyDown={this.props.addNewTodo}/>
+          ref='newTodo'
+          onKeyDown={this.handleNewTodo}/>
       </header>
     )
   }
