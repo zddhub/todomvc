@@ -51,11 +51,11 @@ class TodoApp extends Component {
   }
 }
 
-function select(state) {
+function mapStateToProps(state) {
   return {
     todos: state.todos,
     filter: state.filter
   }
 }
 
-export default connect(select)(TodoApp)
+export default connect(mapStateToProps)(TodoApp)
