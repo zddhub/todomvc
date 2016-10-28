@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
 import ToggleAll from './ToggleAll'
 import TodoItem from './TodoItem'
 import FilterTodo from './FilterTodo'
@@ -53,6 +53,15 @@ class MainSection extends Component {
       </section>
     )
   }
+}
+
+MainSection.propTypes = {
+  todos: PropTypes.array.isRequired,
+  filter: PropTypes.string.isRequired,
+  filterChange: PropTypes.func.isRequired,
+  toggleAllChange: PropTypes.func.isRequired,
+  completedTodo: PropTypes.func.isRequired,
+  destory: PropTypes.func.isRequired
 }
 
 export default MainSection

@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { requestRemoveTodo, requestCompleteTodo, requestTriggerAllTodos, fetchTodos, requestAddTodo } from '../actions/async'
 import { filterTodos } from '../actions/sync'
@@ -49,6 +49,11 @@ class TodoApp extends Component {
       </section>
     )
   }
+}
+
+TodoApp.propTypes = {
+  todos: PropTypes.object.isRequired,
+  filter: PropTypes.string.isRequired
 }
 
 function mapStateToProps(state) {

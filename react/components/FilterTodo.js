@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
 
 class FilterTodo extends Component{
   render() {
@@ -13,6 +13,12 @@ class FilterTodo extends Component{
       </footer>
     )
   }
+}
+
+FilterTodo.propTypes = {
+  activeCount: PropTypes.number.isRequired,
+  filterChange: PropTypes.func.isRequired,
+  filter: PropTypes.oneOf(['All', 'Active', 'Completed'])
 }
 
 export default FilterTodo

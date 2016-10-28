@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
 
 const ENTER_KEY = 13
 
@@ -20,6 +20,10 @@ class NewTodo extends Component{
       </header>
     )
   }
+}
+
+NewTodo.propTypes = {
+  addNewTodo: PropTypes.func.isRequired  
 }
 
 export default NewTodo

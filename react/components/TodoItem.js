@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
 
 class TodoItem extends Component{
 
@@ -27,6 +27,12 @@ class TodoItem extends Component{
       </li>
     )
   }
+}
+
+TodoItem.propTypes = {
+  todo: PropTypes.object.isRequired,
+  completedTodo: PropTypes.func.isRequired,
+  destory: PropTypes.func.isRequired
 }
 
 export default TodoItem
